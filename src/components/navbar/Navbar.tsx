@@ -3,18 +3,21 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 export const NavList = (
     <ul className="menu p-4 min-h-full bg-base-200 sm:bg-transparent text-base-content flex sm:flex-row sm:justify-end min-w-[30] items-center flex-nowrap">
-        <input
-            type="text"
-            placeholder="Search..."
-            className="input input-bordered input-sm max-w-xs mr-1 hidden lg:flex"
-        />
-        <li className="mr-1">
+        <li>
+            <input
+                type="text"
+                placeholder="Search..."
+                className="input input-bordered input-sm max-w-xs mr-1 flex md:hidden lg:flex"
+            />
+        </li>
+
+        <li className="text-lg sm:text-base lg:text-lg mt-40 sm:mt-0">
             <a>Products</a>
         </li>
-        <li className="mr-1">
+        <li className="text-lg sm:text-base lg:text-lg">
             <a>About Us</a>
         </li>
-        <li className="mr-1">
+        <li className="text-lg sm:text-base lg:text-lg">
             <a>Send an Inquiry</a>
         </li>
     </ul>
