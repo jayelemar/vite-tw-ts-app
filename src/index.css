@@ -17,7 +17,7 @@ body {
 header,
 footer,
 section {
-    @apply justify-center max-w-7xl bg-red-400;
+    @apply m-auto max-w-7xl bg-red-400;
 }
 h1,
 h2,
