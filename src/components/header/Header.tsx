@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/bulakenya-logo.png";
-import Navbar, { NavList } from "../navbar/Navbar";
+import { Navbar, NavList } from "../index";
 
 function Header() {
     return (
@@ -10,7 +10,9 @@ function Header() {
                     <img src={logo} alt="logo" width={50} />
                     <h5 className="text-lg md:text-2xl">Bulakenya Gift Shop</h5>
                 </div>
-                <nav className="hidden md:flex">{NavList}</nav>
+                <nav className="hidden md:flex">
+                    <NavList />
+                </nav>
                 <nav className="flex md:hidden">
                     <Navbar />
                 </nav>
