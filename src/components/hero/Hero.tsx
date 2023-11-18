@@ -15,7 +15,7 @@ function Hero() {
                     <h1 className="mb-5 font-bold text-3xl md:text-5xl text-neutral-200">
                         Gifts & party needs for your Beloved
                     </h1>
-                    <p className="mb-5 text-2xl text-neutral-content text-white hidden md:flex ">
+                    <p className="mb-5 text-2xl text-white hidden md:flex ">
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut
                         assumenda excepturi exercitationem quasi.
                     </p>
