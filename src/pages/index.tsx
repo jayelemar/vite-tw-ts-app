@@ -1,3 +1,4 @@
-export { default as Hero } from "./hero/Hero";
 export { default as Product } from "./product/Product";
 export { default as About } from "./about/About";
+export { default as Home } from "./home/Home";
+export { default as NotFound } from "./404/NotFound";

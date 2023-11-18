@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import NavList from "./NavList";
 
 function Navbar() {
+    const [checked, setChecked] = useState(false);
+
     return (
         <nav>
             <div className="drawer drawer-end z-50">
@@ -10,9 +12,10 @@ function Navbar() {
                     id="my-drawer-4"
                     type="checkbox"
                     className="drawer-toggle"
+                    checked={checked}
+                    onChange={() => setChecked(!checked)}
                 />
                 <div className="drawer-content">
-                    {/* Page content here */}
                     <label
                         htmlFor="my-drawer-4"
                         className="drawer-button btn btn-square glass mr-2"

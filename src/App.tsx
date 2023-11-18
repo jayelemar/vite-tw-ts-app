@@ -1,15 +1,19 @@
 import React from "react";
 import "./App.css";
 import { Footer, Header } from "./components";
-import { About, Hero, Product } from "./pages";
+import { Home, NotFound, Product } from "./pages";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
     return (
         <>
             <Header />
-            <Hero />
-            <Product />
-            <About />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product" element={<Product />} />
+                <Route path="*" element={<NotFound />} />
+                <Route />
+            </Routes>
             <Footer />
         </>
     );

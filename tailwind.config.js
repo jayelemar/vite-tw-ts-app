@@ -5,6 +5,9 @@ export default {
             padding: {
                 // Use any valid utility class from Tailwind CSS
                 root: "0px" // Example: Set padding to 2rem
+            },
+            fontFamily: {
+                sans: ["Poppins", "sans-serif"]
             }
         }
     },

@@ -1,4 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Modal from "../modal/Modal";
+
+function closeNavbar() {
+    document.getElementById("my-drawer-4")?.click();
+}
 
 function NavList() {
     return (
@@ -12,15 +18,17 @@ function NavList() {
             </li>
 
             <li className="text-lg md:text-base lg:text-lg mt-40 md:mt-0 mr-0 md:mr-2">
-                <a>Products</a>
+                <Link to="/product" onClick={closeNavbar}>
+                    Products
+                </Link>
             </li>
             <li className="text-lg md:text-base lg:text-lg mt-4 md:mt-0  mr-0 md:mr-2">
-                <a>About Us</a>
+                <a href="#about" data-te-smooth-scroll-init onClick={closeNavbar}>
+                    About Us
+                </a>
             </li>
             <li className="btn btn-outline btn-error btn-sm text-lg font-normal py-5 px-0 mt-4 md:mt-0 r ">
-                <a className="text-red-400 hover:text-white w-full">
-                    Send an Inquiry
-                </a>
+            <Modal/>
             </li>
         </ul>
     );
