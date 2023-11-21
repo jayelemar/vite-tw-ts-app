@@ -7,13 +7,6 @@ import { useContext } from "react";
 import ModalContext, {
     ModalContextProps
 } from "../../utils/context/modalContext";
-ModalContext;
-
-interface ModalContextProps {
-    isModalOpen: boolean;
-    openModal: () => void;
-    closeModal: () => void;
-}
 
 interface FormData {
     name: string;
