@@ -1,12 +1,46 @@
 import React from "react";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Hero() {
+    const backgroundImage = async () => {
+        try {
+            const res = await axios.get(
+                "https://res.cloudinary.com/dbjn51v3x/image/upload/v1700153330/bulakenya-giftshop/large_oval_brush_1_mkuyr0.jpg",
+                {
+                    responseType: "blob"
+                }
+            );
+            // console.log("Image data:", res.data);
+            const blobData = new Blob([res.data]);
+            const dataUrl = URL.createObjectURL(blobData);
+            return dataUrl;
+        } catch (error) {
+            console.error("Error fetching image:", error);
+            throw error;
+        }
+    };
+
+    const { data: imageData, error, isLoading } = useQuery(
+        "image",
+        backgroundImage
+    );
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        const errorMessage = (error as Error).message;
+        return <p>Error: {errorMessage}</p>;
+    }
+
     return (
         <section
             className="hero min-h-screen mt-18"
             style={{
-                backgroundImage:
-                    "url(https://res.cloudinary.com/dbjn51v3x/image/upload/v1700153330/bulakenya-giftshop/large_oval_brush_1_mkuyr0.jpg"
+                backgroundImage: `url(${imageData})`
             }}
         >
             <div className="hero-overlay rounded-2xl bg-opacity-40 md:bg-opacity-30 h-1/3 w-3/4 md:h-3/5 md:w-3/5 mt-16"></div>
@@ -19,9 +53,11 @@ function Hero() {
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut
                         assumenda excepturi exercitationem quasi.
                     </p>
-                    <button className="btn btn-md sm:btn-wide bg-red-500 text-white text-xl border-none hover:bg-red-600  ">
-                        Explore Store
-                    </button>
+                    <Link to="/product">
+                        <button className="btn btn-md sm:btn-wide bg-red-500 text-white text-xl border-none hover:bg-red-600  ">
+                            Explore Store
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>
