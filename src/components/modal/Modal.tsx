@@ -60,7 +60,7 @@ function Modal() {
     return (
         <>
             <button
-                className="btn text-lg md:text-base lg:text-lg md:mt-0 mr-0 md:mr-2"
+                className="btn text-lg md:text-base lg:text-lg md:mt-0 mr-0 md:mr-2 hidden"
                 onClick={openModal}
             >
                 Contact Us
@@ -134,7 +134,7 @@ function Modal() {
                         <div className="form-group flex justify-center mt-4">
                             <button
                                 type="submit"
-                                className="btn btn-outline px-10"
+                                className="btn btn-outline px-10 font-poppins font-light text-lg border-slate-400"
                             >
                                 Send
                             </button>
