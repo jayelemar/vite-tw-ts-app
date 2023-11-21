@@ -1,12 +1,12 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
-interface ModalContextType {
+export interface ModalContextProps {
     isModalOpen: boolean;
     openModal: () => void;
     closeModal: () => void;
 }
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 export const ModalContextProvider: React.FC<{ children: ReactNode }> = ({
     children
