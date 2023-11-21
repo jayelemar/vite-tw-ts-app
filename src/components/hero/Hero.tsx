@@ -19,7 +19,7 @@ function Hero() {
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut
                         assumenda excepturi exercitationem quasi.
                     </p>
-                    <button className="btn btn-md sm:btn-wide bg-red-600 text-white text-xl border-none hover:bg-red-500">
+                    <button className="btn btn-md sm:btn-wide bg-red-500 text-white text-xl border-none hover:bg-red-600  ">
                         Explore Store
                     </button>
                 </div>

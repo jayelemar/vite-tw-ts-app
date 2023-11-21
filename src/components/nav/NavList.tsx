@@ -37,20 +37,20 @@ function NavList() {
                     Shop
                 </Link>
             </li>
-            <li className="text-lg md:text-base lg:text-lg mt-4 md:mt-0  mr-0 md:mr-2">
+            <li className="text-lg md:text-base lg:text-lg mt-0 md:mt-0  mr-0 md:mr-2 ">
                 <a href="#about" data-te-smooth-scroll-init onClick={closeNavbar}>
                     About Us
                 </a>
             </li>
-            <li className="text-lg md:text-base lg:text-lg mt-4 md:mt-0  mr-0 md:mr-2 bg-red-400  rounded-lg hover:bg-rose-500 " >
-            <a onClick={ () => {
-                handleClick();
-                closeNavbar();
-            }
-} 
-
-                data-te-smooth-scroll-init 
-                className="text-white hover:text-white">
+            <li className="text-lg md:text-base lg:text-lg mt-4 md:mt-0  mr-0 md:mr-2 bg-error  rounded-lg" >
+                <a 
+                    onClick={ () => {
+                        handleClick();
+                        closeNavbar();
+                    }} 
+                    data-te-smooth-scroll-init 
+                    className="text-white hover:text-white"
+                >
                     Inquire
                 </a>
             </li>

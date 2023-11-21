@@ -71,7 +71,7 @@ function Modal() {
                     isModalOpen ? "modal-open" : ""
                 }`}
             >
-                <div className="modal-box py-3">
+                <div className="modal-box pt-3 pb-0">
                     <div className="flex justify-between items-center">
                         <h3 className=" text-red-400 text-2xl font-normal my-0">
                             Hello
@@ -82,13 +82,13 @@ function Modal() {
                             </button>
                         </form>
                     </div>
-                    <p className="py-4">
+                    <p className="py-2 px-1">
                         If you have any questions or comments, please send us a
                         message..
                     </p>
                     <form onSubmit={onSubmit}>
-                        <div className="flex flex-col p-2">
-                            <div className="form-group flex flex-col p-2 border border-gray-400 rounded-lg focus:outline-none text-sm">
+                        <div className="flex flex-col pb-2 px-0">
+                            <div className="form-group flex flex-col p-2 border border-gray-400 rounded-lg focus:outline-none text-sm mb-2">
                                 <input
                                     type="text"
                                     placeholder="Name"
@@ -117,7 +117,7 @@ function Modal() {
                                 )}
                             </div>
                         </div>
-                        <div className="form-group p-2 border border-gray-400 rounded-lg focus:outline-none text-sm">
+                        <div className="form-group p-2 border border-gray-400 rounded-lg focus:outline-none text-sm px-1">
                             <textarea
                                 rows={4}
                                 placeholder="Message"
@@ -131,7 +131,7 @@ function Modal() {
                                 )}
                             </textarea>
                         </div>
-                        <div className="form-group flex justify-center">
+                        <div className="form-group flex justify-center mt-4">
                             <button
                                 type="submit"
                                 className="btn btn-outline px-10"

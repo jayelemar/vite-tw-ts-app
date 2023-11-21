@@ -12,7 +12,9 @@ function Header() {
                     className="navbar-start btn btn-ghost text-xl p-0 w-64 sm:w-96 flex justify-start items-center mb-2 mx-5 "
                 >
                     <img src={logo} alt="logo" width={50} />
-                    <h5 className="text-lg md:text-2xl">Bulakenya Gift Shop</h5>
+                    <h5 className="text-lg md:text-2xl pt-2">
+                        Bulakenya Gift Shop
+                    </h5>
                 </Link>
                 <nav className="hidden md:flex">
                     <NavList />
