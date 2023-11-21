@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Modal from "../modal/Modal";
+import ModalContext, { ModalContextProps } from "../../utils/context/modalContext";
 
-function closeNavbar() {
-    document.getElementById("my-drawer-4")?.click();
-}
+
+
 
 function NavList() {
+    const { openModal } = useContext(ModalContext) as ModalContextProps;
+    const handleClick = () => {
+        openModal();
+    };
+
+    function closeNavbar() {
+        document.getElementById("my-drawer-4")?.click();
+    
+
+    
+
+    } 
     return (
-        <ul className="menu p-4 min-h-full bg-base-200 md:bg-transparent text-base-content flex md:flex-row md:justify-end min-w-[30] items-center flex-nowrap">
+        <ul className="menu p-4 min-h-full bg-base-200 md:bg-transparent text-base-content flex md:flex-row md:justify-end min-w-32 items-center flex-nowrap">
             <li>
                 <input
                     type="text"
@@ -16,10 +27,14 @@ function NavList() {
                     className="input input-bordered input-sm max-w-xs flex md:hidden lg:flex mr-0 md:mr-2 border-t-0 border-x-0"
                 />
             </li>
-
             <li className="text-lg md:text-base lg:text-lg mt-40 md:mt-0 mr-0 md:mr-2">
+                <Link to="/" onClick={closeNavbar}>
+                    Home
+                </Link>
+            </li>
+            <li className="text-lg md:text-base lg:text-lg md:mt-0 mr-0 md:mr-2">
                 <Link to="/product" onClick={closeNavbar}>
-                    Products
+                    Shop
                 </Link>
             </li>
             <li className="text-lg md:text-base lg:text-lg mt-4 md:mt-0  mr-0 md:mr-2">
@@ -27,8 +42,17 @@ function NavList() {
                     About Us
                 </a>
             </li>
-            <li className="btn btn-outline btn-error btn-sm text-lg font-normal py-5 px-0 mt-4 md:mt-0 r ">
-            <Modal/>
+            <li className="text-lg md:text-base lg:text-lg mt-4 md:mt-0  mr-0 md:mr-2 bg-red-400  rounded-lg hover:bg-rose-500 " >
+            <a onClick={ () => {
+                handleClick();
+                closeNavbar();
+            }
+} 
+
+                data-te-smooth-scroll-init 
+                className="text-white hover:text-white">
+                    Inquire
+                </a>
             </li>
         </ul>
     );
