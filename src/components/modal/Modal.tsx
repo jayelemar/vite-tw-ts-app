@@ -28,6 +28,10 @@ function Modal() {
         ModalContext
     ) as ModalContextProps;
 
+    if (!ModalContext) {
+        return null;
+    }
+
     const onSubmit = async () => {
         try {
             const data: FormData = {
