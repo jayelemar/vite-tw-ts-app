@@ -7,7 +7,8 @@ export default {
                 root: "0px" // Example: Set padding to 2rem
             },
             fontFamily: {
-                sans: ["Poppins", "sans-serif"]
+                sans: ["Poppins", "sans-serif"],
+                poppins: ["Poppins", "sans-serif"]
             }
         }
     },

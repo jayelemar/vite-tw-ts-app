@@ -53,17 +53,11 @@ function Hero() {
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut
                         assumenda excepturi exercitationem quasi.
                     </p>
-<<<<<<< Updated upstream
-                    <button className="btn btn-md sm:btn-wide bg-red-600 text-white text-xl border-none hover:bg-red-500">
-                        Explore Store
-                    </button>
-=======
                     <Link to="/product">
-                        <button className="btn btn-md sm:btn-wide bg-red-500 text-white text-xl border-none hover:bg-red-600  ">
+                        <button className="btn btn-wide bg-red-600 font-poppins font-light text-lg text-white border-none hover:bg-red-700 ">
                             Explore Store
                         </button>
                     </Link>
->>>>>>> Stashed changes
                 </div>
             </div>
         </section>
