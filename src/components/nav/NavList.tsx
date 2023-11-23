@@ -3,18 +3,16 @@ import { Link } from "react-router-dom";
 import ModalContext, { ModalContextProps } from "../../utils/context/modalContext";
 
 
-
-
 function NavList() {
-    const { openModal } = useContext(ModalContext) as ModalContextProps;
-    const handleClick = () => {
-        openModal();
-    };
-
-    function closeNavbar() {
-        document.getElementById("my-drawer-4")?.click();
     
-
+        const { openModal } = useContext(ModalContext) as ModalContextProps;
+        const handleClick = () => {
+            openModal();
+        };
+    
+        function closeNavbar() {
+            document.getElementById("my-drawer-4")?.click();
+        
     
 
     } 
