@@ -1,15 +1,18 @@
 import React from "react";
 import "./App.css";
-import { Footer, Header } from "./components";
-import { Home, NotFound, Product } from "./pages";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Footer, Header, Layout, Sidebar } from "./components";
+import { Home, NotFound, Product, Dashboard } from "./pages";
 import { Forgot, Login, Register, Reset } from "./pages/auth";
 
 function App() {
+    const location = useLocation();
+    const isAdminRoute = location.pathname.startsWith("/dashboard");
+
     return (
         <>
-            <Header />
+            {isAdminRoute ? null : <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />
@@ -19,8 +22,19 @@ function App() {
                 <Route path="/forgot" element={<Forgot />} />
                 {/* <Route path="/resetpassword/:resetToken" element={<Reset />} /> */}
                 <Route path="/resetpassword" element={<Reset />} />
+
+                <Route
+                    path="/dashboard"
+                    element={
+                        <Sidebar>
+                            <Layout>
+                                <Dashboard />
+                            </Layout>
+                        </Sidebar>
+                    }
+                />
             </Routes>
-            <Footer />
+            {isAdminRoute ? null : <Footer />}
             <ToastContainer />
         </>
     );
