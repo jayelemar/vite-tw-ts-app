@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
-interface UserData {
+export interface UserData {
     isLoggedIn: boolean;
     name: string | null;
     user: User;
 }
 
-interface User {
+export interface User {
     name: string;
     email: string;
     phone: string;
