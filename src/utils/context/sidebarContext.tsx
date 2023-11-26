@@ -1,4 +1,5 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, useState } from "react";
+import { LayoutProps } from "../../components/layout/Layout";
 
 interface SidebarContextType {
     isOpen: boolean;
@@ -6,21 +7,18 @@ interface SidebarContextType {
     toggleSidebar: () => void;
     closeSidebar: () => void;
     openSidebar: () => void;
-}
-interface ProviderProps {
-    children: ReactNode;
+    closeMenu: () => void;
 }
 
 const SideBarContext = createContext<SidebarContextType | undefined>(undefined);
 
-export const SideBarContextProvider: React.FC<ProviderProps> = ({
-    children
-}) => {
+export const SideBarContextProvider: React.FC<LayoutProps> = ({ children }) => {
     const [isOpen, setIsOpen] = useState(true);
     const [expandMenu, setExpandMenu] = useState(false);
 
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
+        setExpandMenu(false);
     };
 
     const closeSidebar = () => {
@@ -32,6 +30,10 @@ export const SideBarContextProvider: React.FC<ProviderProps> = ({
         setIsOpen(true);
     };
 
+    const closeMenu = () => {
+        setExpandMenu(false);
+    };
+
     return (
         <SideBarContext.Provider
             value={{
@@ -39,7 +41,8 @@ export const SideBarContextProvider: React.FC<ProviderProps> = ({
                 expandMenu,
                 toggleSidebar,
                 closeSidebar,
-                openSidebar
+                openSidebar,
+                closeMenu
             }}
         >
             {children}

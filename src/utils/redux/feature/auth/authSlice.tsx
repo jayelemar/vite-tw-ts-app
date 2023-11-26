@@ -3,41 +3,65 @@ import { RootState } from "../../store";
 
 interface UserData {
     isLoggedIn: boolean;
-    userName: string | null;
-    email: string | null;
-    userID: string | null;
+    name: string | null;
+    user: User;
 }
+
+interface User {
+    name: string;
+    email: string;
+    phone: string;
+    bio: string;
+    photo: string;
+}
+
+const storedName = JSON.parse(localStorage.getItem("name") as string);
+const name: string | null = storedName;
 
 const initialState: UserData = {
     isLoggedIn: false,
-    email: null,
-    userName: null,
-    userID: null
+    name: name,
+    user: {
+        name: "",
+        email: "",
+        phone: "",
+        bio: "",
+        photo: ""
+    }
 };
 
 const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
-        SET_ACTIVE_USER: (state, action: PayloadAction<UserData>) => {
-            const userData = action.payload;
-            state.isLoggedIn = true;
-            state.userName = userData.userName;
-            state.email = userData.email;
-            state.userID = userData.userID;
+        SET_LOGIN: (state, action) => {
+            state.isLoggedIn = action.payload;
         },
-        REMOVE_ACTIVE_USER: state => {
-            state.isLoggedIn = false;
-            state.userName = null;
-            state.email = null;
-            state.userID = null;
+        SET_NAME(state, action) {
+            localStorage.setItem("name", JSON.stringify(action.payload));
+            state.name = action.payload;
+        },
+
+        SET_USER(state, action: PayloadAction<User>) {
+            const profile = action.payload;
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    name: profile.name,
+                    email: profile.email,
+                    phone: profile.phone,
+                    bio: profile.bio,
+                    photo: profile.photo
+                }
+            };
         }
     }
 });
 
-export const { SET_ACTIVE_USER, REMOVE_ACTIVE_USER } = authSlice.actions;
+export const { SET_LOGIN, SET_NAME, SET_USER } = authSlice.actions;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
-export const selectEmail = (state: RootState) => state.auth.email;
-export const selectUserName = (state: RootState) => state.auth.userName;
-export const selectUserID = (state: RootState) => state.auth.userID;
+export const selectName = (state: RootState) => state.auth.name;
+export const selectUser = (state: RootState) => state.auth.user;
+
 export default authSlice.reducer;

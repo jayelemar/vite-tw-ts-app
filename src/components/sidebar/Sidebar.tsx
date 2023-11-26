@@ -1,38 +1,43 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { LayoutProps } from "../layout/Layout";
 import logo from "./../../assets/bulakenya-logo.png";
 import { HiMenuAlt3 } from "react-icons/hi";
 import SidebarItem from "./SidebarItem";
 import menu from "../../data/Sidebar";
+import SideBarContext from "../../utils/context/sidebarContext";
+import { useNavigate } from "react-router-dom";
+
 
 function Sidebar({ children }: LayoutProps) {
-    const [isOpen, setIsOpen] = useState(true);
 
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
+    const context =  useContext(SideBarContext);
+    const { isOpen, toggleSidebar } = context ?? {};
+    const navigate = useNavigate();
+
+    const goHome = () => {
+        navigate("/")
     };
 
     return (
         <div className="flex">
             <div
-                className={`fixed top-0 left-0 w-60 h-[100vh] flex-shrink-0 bg-slate-50  text-slate-700 overflow-auto transition-all duration-500 ${
-                    isOpen ? "w-60" : "w-16"
-                }`}
+                className={`fixed top-0 left-0 h-[100vh] flex-shrink-0 bg-slate-50  text-slate-700 overflow-auto transition-all duration-500 ${ isOpen ? "w-full sm:w-60" : "w-14"} `}
             >
-                <div className="flex items-center  px-2 transition-all duration-500 bg-blue-400 h-12">
+                <div className="flex items-center  pl-3 transition-all duration-500 bg-blue-400 h-12">
                     <div className={isOpen ? "block" : "hidden"}>
                         <img
                             src={logo}
                             alt="logo"
                             width={35}
                             className="cursor-pointer"
+                            onClick={goHome}
                         />
                     </div>
-                    <div onClick={toggleSidebar}>
+                    <div onClick={toggleSidebar} className={`${isOpen ? "w-full" : "w-14"}`}>
                         <HiMenuAlt3
                             size={28}
-                            className={`cursor-pointer transition-all duration-500 ${
-                                isOpen ? "ml-40" : "ml-3"
+                            className={`cursor-pointer transition-all duration-500  ${
+                                isOpen ? "ml-auto mr-2" : "ml-1"
                             }`}
                         />
                     </div>
@@ -43,7 +48,7 @@ function Sidebar({ children }: LayoutProps) {
                             <SidebarItem
                                 key={index}
                                 item={item}
-                                isOpen={isOpen}
+                                isOpen={isOpen ?? false}
                             />
                         );
                     }
@@ -51,7 +56,7 @@ function Sidebar({ children }: LayoutProps) {
             </div>
             <main
                 className={`transition-all duration-500 w-full bg-slate-100 ${
-                    isOpen ? "pl-60" : "pl-16"
+                    isOpen ? "pl-60" : "pl-14"
                 }`}
             >
                 {children}
