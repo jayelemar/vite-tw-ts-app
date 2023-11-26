@@ -5,18 +5,18 @@ import React from "react";
 const menu = [
     {
         title: "Dashboard",
-        icon: <FaTh />,
+        icon: <FaTh size={24} />,
         path: "/dashboard"
     },
     {
         title: "Add Product",
-        icon: <BiImageAdd />,
+        icon: <BiImageAdd size={25} />,
         path: "/add-product"
     },
     {
         title: "Account",
-        icon: <FaRegChartBar />,
-        childrens: [
+        icon: <FaRegChartBar size={24} />,
+        children: [
             {
                 title: "Profile",
                 path: "/profile"
@@ -29,7 +29,7 @@ const menu = [
     },
     {
         title: "Report Bug",
-        icon: <FaCommentAlt />,
+        icon: <FaCommentAlt size={24} />,
         path: "/contact-us"
     }
 ];
