@@ -5,6 +5,9 @@ import { ToastContainer } from "react-toastify";
 import { Footer, Header, Layout, Sidebar } from "./components";
 import { Home, NotFound, Product, Dashboard } from "./pages";
 import { Forgot, Login, Register, Reset } from "./pages/auth";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 function App() {
     const location = useLocation();
