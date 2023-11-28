@@ -6,6 +6,7 @@ import SidebarItem from "./SidebarItem";
 import menu from "../../data/Sidebar";
 import SideBarContext from "../../utils/context/sidebarContext";
 import { useNavigate } from "react-router-dom";
+import Footer from "../footer/Footer";
 
 
 function Sidebar({ children }: LayoutProps) {
@@ -53,6 +54,7 @@ function Sidebar({ children }: LayoutProps) {
                         );
                     }
                 )}
+
             </div>
             <main
                 className={`transition-all duration-500 w-full bg-slate-100 ${
@@ -61,6 +63,7 @@ function Sidebar({ children }: LayoutProps) {
             >
                 {children}
             </main>
+            
         </div>
     );
 }
