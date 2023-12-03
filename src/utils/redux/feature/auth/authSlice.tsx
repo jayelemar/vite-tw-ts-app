@@ -4,15 +4,16 @@ import { RootState } from "../../store";
 export interface UserData {
     isLoggedIn: boolean;
     name: string | null;
-    user: User;
+    email: string | null;
+    user?: User;
 }
 
 export interface User {
     name: string;
-    email: string;
     phone: string;
     bio: string;
     photo: string;
+    email: string;
 }
 
 const storedName = JSON.parse(localStorage.getItem("name") as string);
@@ -21,6 +22,7 @@ const name: string | null = storedName;
 const initialState: UserData = {
     isLoggedIn: false,
     name: name,
+    email: "",
     user: {
         name: "",
         email: "",
