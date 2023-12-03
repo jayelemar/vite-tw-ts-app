@@ -4,7 +4,7 @@ import { UserData } from "../utils/redux/feature/auth/authSlice";
 
 export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-export const validateEmail = email => {
+export const validateEmail = (email: string) => {
     return email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
@@ -21,6 +21,8 @@ export const registerUser = async (userData: UserData) => {
         }
         return response.data;
     } catch (error) {
+        console.error("Error in registerUser:", error); // Add this line to log the error
+
         if (axios.isAxiosError(error)) {
             const message =
                 (error.response &&
