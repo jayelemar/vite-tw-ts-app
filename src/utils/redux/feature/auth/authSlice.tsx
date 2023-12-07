@@ -3,8 +3,9 @@ import { RootState } from "../../store";
 
 export interface UserData {
     isLoggedIn: boolean;
-    name: string | null;
+    name?: string | null;
     email: string | null;
+    password?: string;
     user?: User;
 }
 

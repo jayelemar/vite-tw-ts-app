@@ -111,7 +111,7 @@ function Register() {
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
                         />
-                        <button className="btn btn-primary text-white btn-block font-poppins text-lg font-light">
+                        <button className="btn btn-error text-white btn-block font-poppins text-lg font-light">
                             Register
                         </button>
                     </form>
