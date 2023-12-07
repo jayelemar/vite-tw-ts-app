@@ -3,8 +3,7 @@ export default {
     theme: {
         extend: {
             padding: {
-                // Use any valid utility class from Tailwind CSS
-                root: "0px" // Example: Set padding to 2rem
+                root: "0px"
             },
             fontFamily: {
                 sans: ["Poppins", "sans-serif"],
@@ -12,6 +11,6 @@ export default {
             }
         }
     },
-    // eslint-disable-next-line no-undef
+
     plugins: [require("daisyui")]
 };

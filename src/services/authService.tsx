@@ -21,7 +21,34 @@ export const registerUser = async (userData: UserData) => {
         }
         return response.data;
     } catch (error) {
-        console.error("Error in registerUser:", error); // Add this line to log the error
+        console.error("Error in registerUser:", error);
+
+        if (axios.isAxiosError(error)) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            toast.error(message);
+        } else {
+            toast.error("An unexpected error occurred");
+        }
+    }
+};
+
+export const loginUser = async (userData: UserData) => {
+    try {
+        const response = await axios.post(
+            `${BACKEND_URL}/api/users/login`,
+            userData
+        );
+        if (response.statusText === "OK") {
+            toast.success("Login Succesfully");
+        }
+        return response.data;
+    } catch (error) {
+        console.error("Error in loginUser:", error);
 
         if (axios.isAxiosError(error)) {
             const message =
