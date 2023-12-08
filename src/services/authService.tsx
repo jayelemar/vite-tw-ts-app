@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { UserData } from "../utils/redux/feature/auth/authSlice";
 
@@ -38,13 +38,14 @@ export const registerUser = async (userData: UserData) => {
 };
 
 export const loginUser = async (userData: UserData) => {
+    const { isLoggedIn } = userData;
     try {
-        const response = await axios.post(
+        const response: AxiosResponse = await axios.post(
             `${BACKEND_URL}/api/users/login`,
             userData
         );
-        if (response.statusText === "OK") {
-            toast.success("Login Succesfully");
+        if (isLoggedIn && response.statusText === "OK") {
+            toast.success("Login Successful...");
         }
         return response.data;
     } catch (error) {
@@ -57,6 +58,27 @@ export const loginUser = async (userData: UserData) => {
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
+            toast.error(message);
+        } else {
+            toast.error("An unexpected error occurred");
+        }
+    }
+};
+
+export const logoutUser = async () => {
+    try {
+        await axios.get(`${BACKEND_URL}/api/users/logout`);
+    } catch (error) {
+        console.error("Error in logoutUser:", error);
+
+        if (axios.isAxiosError(error)) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                "An unexpected error occurred during login.";
+            console.error("Server response:", message);
             toast.error(message);
         } else {
             toast.error("An unexpected error occurred");
