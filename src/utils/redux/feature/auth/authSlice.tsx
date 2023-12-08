@@ -4,9 +4,9 @@ import { RootState } from "../../store";
 export interface UserData {
     isLoggedIn: boolean;
     name?: string | null;
-    email: string | null;
+    email?: string | null;
     password?: string;
-    user?: User;
+    user?: User | null;
 }
 
 export interface User {

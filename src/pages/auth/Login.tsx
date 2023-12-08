@@ -34,9 +34,29 @@ function Login() {
         setformData({ ...formData, [name]: value });
     };
 
-    const login = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const login = async (e?: React.FormEvent<HTMLFormElement>) => {
+        if (e) {
+            e.preventDefault();
+        }
+        const userData: UserData = {
+            isLoggedIn: true,
+            email,
+            password
+        };
 
+        try {
+            const data = await loginUser(userData);
+            // console.log(data);
+            await dispatch(SET_LOGIN(true));
+            await dispatch(SET_NAME(data.name));
+            navigate("/dashboard");
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+        }
+    };
+
+    const handleLoginClick = async () => {
         if (!email || !password) {
             return toast.error("All fields are required");
         }
@@ -46,20 +66,9 @@ function Login() {
         if (!validateEmail(email)) {
             return toast.error("Please enter a valid email");
         }
-
-        const userData: UserData = {
-            isLoggedIn: true,
-            email,
-            password
-        };
         setIsLoading(true);
-
         try {
-            const data = await loginUser(userData);
-            console.log(data);
-            await dispatch(SET_LOGIN(true));
-            await dispatch(SET_NAME(data.name));
-            navigate("/dashboard");
+            await login();
             setIsLoading(false);
         } catch (error) {
             setIsLoading(false);
@@ -75,7 +84,7 @@ function Login() {
                 </div>
                 <div className="w-full md:w-96 lg:w-[30rem] p-6 duration-500 ease-linear px-5 shadow-xl">
                     <h3>Login</h3>
-                    <form onSubmit={login}>
+                    <form>
                         <input
                             type="text"
                             name="email"
@@ -92,7 +101,13 @@ function Login() {
                             value={formData.password}
                             onChange={handleInputChange}
                         />
-                        <button className="btn btn-neutral btn-block font-poppins text-base sm:text-lg  font-light">
+                        <button
+                            onClick={() => {
+                                handleLoginClick();
+                            }}
+                            type="button"
+                            className="btn btn-neutral btn-block font-poppins text-base sm:text-lg  font-light"
+                        >
                             Login
                         </button>
                     </form>
