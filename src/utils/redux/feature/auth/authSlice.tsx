@@ -47,17 +47,14 @@ const authSlice = createSlice({
 
         SET_USER(state, action: PayloadAction<User>) {
             const profile = action.payload;
-            return {
-                ...state,
-                user: {
-                    ...state.user,
-                    name: profile.name,
-                    email: profile.email,
-                    phone: profile.phone,
-                    bio: profile.bio,
-                    photo: profile.photo
-                }
-            };
+            state.user = {
+                ...state.user,
+                name: profile.name,
+                email: profile.email,
+                phone: profile.phone,
+                bio: profile.bio,
+                photo: profile.photo
+            }
         }
     }
 });
