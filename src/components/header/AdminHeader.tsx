@@ -1,33 +1,29 @@
 import React from "react";
-import { loginUser } from "../../services/authService";
-import { useDispatch } from "react-redux";
-import { SET_LOGIN, SET_NAME } from "../../utils/redux/feature/auth/authSlice";
+import { logoutUser } from "../../services/authService";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_LOGIN, SET_NAME, selectName } from "../../utils/redux/feature/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+useSelector
 
 function AdminHeader() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const userData = {
-        isLoggedIn: false,
-        name: "",
-        email: "",
-        password: "",
-        user: null
-    };
+    const name = useSelector(selectName)
 
     const handleLogoutClick = async () => {
-        await loginUser(userData);
+        await logoutUser();
         await dispatch(SET_LOGIN(false));
         await dispatch(SET_NAME(""));
         navigate("/login");
+        toast.success("You have successfully log-out.")
     };
 
     return (
         <header>
             <h3>
                 <span className="font-light">Welcome,</span>
-                <span className="text-error">Zino</span>
+                <span className="text-error">{name}</span>
             </h3>
             <button className="btn btn-error" onClick={handleLogoutClick}>
                 Logout

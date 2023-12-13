@@ -44,13 +44,12 @@ export const loginUser = async (userData: UserData) => {
             `${BACKEND_URL}/api/users/login`,
             userData
         );
+
         if (isLoggedIn && response.statusText === "OK") {
             toast.success("Login Successful...");
         }
         return response.data;
     } catch (error) {
-        console.error("Error in loginUser:", error);
-
         if (axios.isAxiosError(error)) {
             const message =
                 (error.response &&
@@ -69,8 +68,6 @@ export const logoutUser = async () => {
     try {
         await axios.get(`${BACKEND_URL}/api/users/logout`);
     } catch (error) {
-        console.error("Error in logoutUser:", error);
-
         if (axios.isAxiosError(error)) {
             const message =
                 (error.response &&
@@ -79,6 +76,25 @@ export const logoutUser = async () => {
                 error.message ||
                 "An unexpected error occurred during login.";
             console.error("Server response:", message);
+            toast.error(message);
+        } else {    
+            toast.error("An unexpected error occurred");
+        }
+    }
+};
+
+export const forgotPassword = async (userData: { email: string }) => {
+    try {
+        const response =  await axios.post(`${BACKEND_URL}/api/users/forgotpassword`, userData);
+        toast.success(response.data.message)
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                "An unexpected error occurred during login.";
             toast.error(message);
         } else {
             toast.error("An unexpected error occurred");
