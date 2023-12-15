@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import SideBarContext from "../../utils/context/sidebarContext";
+import SideBarContext from "../../store/context/sidebarContext";
 
 
 export interface SideBarItemProps {

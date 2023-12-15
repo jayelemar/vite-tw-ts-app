@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import ModalContext, { ModalContextProps } from "../../utils/context/modalContext";
+import ModalContext, { ModalContextProps } from "../../store/context/modalContext";
 
 
 function NavList() {

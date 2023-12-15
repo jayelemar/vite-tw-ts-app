@@ -22,6 +22,6 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src"],
+    "include": ["src", "src/store/context", "src/store/redux/store.tsx", "src/store/redux/feature/authSlice.tsx"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

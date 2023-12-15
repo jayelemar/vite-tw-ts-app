@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import loginImg from "../../assets/login.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword, validateEmail } from "../../services/authService";
 import { toast } from "react-toastify";
+import { ForgotPasswordProps } from "../../types/types";
 
-interface ForgotPasswordData {
-    email: string;
-}
 
 function Forgot() {
     const [email, setEmail] = useState("");
+    const navigate = useNavigate();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -25,11 +24,11 @@ function Forgot() {
         if (!validateEmail(email)) {
             return toast.error("Please enter a valid email");
         }
-
-        const userData: ForgotPasswordData =  { email } 
+        const userData: ForgotPasswordProps = { email };
 
         await forgotPassword(userData);
         setEmail("")
+        navigate("/")
 
     };
 

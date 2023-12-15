@@ -4,10 +4,11 @@ import registerImg from "../../assets/register.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, validateEmail } from "../../services/authService";
-import { SET_LOGIN, SET_NAME } from "../../utils/redux/feature/auth/authSlice";
+import { SET_NAME } from "../../store/redux/feature/authSlice";
 import { useDispatch } from "react-redux";
+import { UserProps } from "../../types/types";
 
-const initialState = {
+const initialState: UserProps = {
     name: "",
     email: "",
     password: "",
@@ -52,8 +53,8 @@ function Register() {
         try {
             const data = await registerUser(userData);
             console.log(data);
-            await dispatch(SET_LOGIN(true));
             await dispatch(SET_NAME(data.name));
+            toast.success("Account Registration Successful")
             navigate("/dashboard");
             setIsLoading(false);
         } catch (error) {
@@ -82,7 +83,7 @@ function Register() {
                                 name="name"
                                 placeholder="Name"
                                 className="input input-bordered w-full input-base placeholder:font-poppins placeholder:text-lg mb-2"
-                                value={formData.name}
+                                value={formData.name }
                                 onChange={handleInputChange}
                             />
                             <input
@@ -90,7 +91,7 @@ function Register() {
                                 name="email"
                                 placeholder="Email"
                                 className="input input-bordered w-full input-base placeholder:font-poppins placeholder:text-lg mb-6"
-                                value={formData.email}
+                                value={formData.email }
                                 onChange={handleInputChange}
                             />
                         </div>
