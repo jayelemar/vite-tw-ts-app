@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ModalContext, {
     ModalContextProps
-} from "../../utils/context/modalContext";
+} from "../../store/context/modalContext";
 import { Modal } from "../../components";
 
 function Contact() {

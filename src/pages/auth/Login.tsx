@@ -4,21 +4,14 @@ import loginImg from "../../assets/login.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { loginUser, validateEmail } from "../../services/authService";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    SET_LOGIN,
-    SET_NAME,
-    UserData,
-    selectIsLoggedIn
-} from "../../utils/redux/feature/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { SET_NAME } from "../../store/redux/feature/authSlice";
 import { toast } from "react-toastify";
+import { UserProps } from "../../types/types";
 
-type InitialStateType = {
-    email: string;
-    password: string;
-};
 
-const initialState: InitialStateType = {
+
+const initialState: UserProps = {
     email: "",
     password: ""
 };
@@ -26,7 +19,6 @@ const initialState: InitialStateType = {
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(selectIsLoggedIn)
 
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setformData] = useState(initialState);
@@ -34,25 +26,34 @@ function Login() {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setformData({ ...formData, [name]: value });
+        if (name) {
+            setformData({ ...formData, [name]: value });
+        }
     };
 
     const login = async (e?: React.FormEvent<HTMLFormElement>) => {
         if (e) {
             e.preventDefault();
         }
-        const userData: UserData = {
-            isLoggedIn: true,
+        const userData: UserProps = {
             email,
             password
         };
 
         try {
             const data = await loginUser(userData);
-            await dispatch(SET_LOGIN(true));
-            await dispatch(SET_NAME(data.name));
-            navigate("/dashboard");
-            setIsLoading(false);
+            if (data) {
+                if (data.name) {
+                    await dispatch(SET_NAME(data.name));
+                    navigate("/dashboard");
+                } else {
+                    console.error("Invalid data received. Name is missing:", data);
+                }
+            } else {
+                console.error("Invalid data received:", data);
+                setIsLoading(false);
+            }
+            
         } catch (error) {
             console.error(error);
             setIsLoading(false);
@@ -60,7 +61,7 @@ function Login() {
     };
 
     const handleLoginClick = async () => {
-        if ( isLoggedIn  && (!email || !password)) {
+        if ( !email || !password) {
             return toast.error("All fields are required");
         }
         if (password.length < 6) {

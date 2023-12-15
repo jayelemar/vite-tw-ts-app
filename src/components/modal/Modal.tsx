@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import ModalContext, {
     ModalContextProps
-} from "../../utils/context/modalContext";
+} from "../../store/context/modalContext";
 
 interface FormData {
     name: string;

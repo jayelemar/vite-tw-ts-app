@@ -4,7 +4,7 @@ import logo from "./../../assets/bulakenya-logo.png";
 import { HiMenuAlt3 } from "react-icons/hi";
 import SidebarItem from "./SidebarItem";
 import menu from "../../data/Sidebar";
-import SideBarContext from "../../utils/context/sidebarContext";
+import SideBarContext from "../../store/context/sidebarContext";
 import { useNavigate } from "react-router-dom";
 import Footer from "../footer/Footer";
 
