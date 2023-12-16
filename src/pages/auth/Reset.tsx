@@ -20,6 +20,8 @@ function Reset() {
 
     const { resetToken } = useParams<ResetTokenProps>();
 
+    console.log('Reset Token:', resetToken);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setformData({ ...formData, [name]: value });
