@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { ForgotPasswordProps, UserProps } from "../types/types";
 
 
-export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+export const BACKEND_URL: string = import.meta.env.VITE_BACKEND_URL;
 
 export const validateEmail = (email: string) => {
     return email.match(
@@ -87,7 +87,15 @@ export const logoutUser = async () => {
 export const forgotPassword = async (userData: ForgotPasswordProps) => {
     try {
         const response =  await axios.post(`${BACKEND_URL}/api/users/forgotpassword`, userData);
-        toast.success(response.data.message)
+        const resetToken = response.data.resetToken;
+        if (resetToken) {
+            const resetLink = `${window.location.origin}/resetpassword/${resetToken}`;
+            console.log('Reset Link:', resetLink);
+
+            toast.success(response.data.message);
+        } else {
+            console.error('Reset Token is undefined in server response');
+        }
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const message =
