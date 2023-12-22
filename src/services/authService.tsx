@@ -142,3 +142,31 @@ export const resetPassword = async (userData: UserProps, resetToken: string) => 
         }
     }
 };
+
+
+
+
+export const getLoginStatus = async () => {
+    try {
+        const response = await axios.get(
+            `${BACKEND_URL}/api/users/loggedin`
+        );
+        return response.data
+    } catch (error) {
+        console.error('Reset Password Error:', error);
+
+        if (axios.isAxiosError(error)) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                "An unexpected error occurred during password reset.";
+            console.error("Server response:", message);
+            throw new Error(message);
+        } else {
+            console.error("An unexpected error occurred");
+            throw new Error("An unexpected error occurred during password reset.");
+        }
+    }
+};
