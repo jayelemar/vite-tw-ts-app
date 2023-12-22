@@ -13,7 +13,7 @@ interface SidebarContextType {
 const SideBarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export const SideBarContextProvider: React.FC<LayoutProps> = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(window.innerWidth >= 640);
     const [expandMenu, setExpandMenu] = useState(false);
 
     const toggleSidebar = () => {

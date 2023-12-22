@@ -18,10 +18,7 @@ export interface SideBarItemProps {
 function SidebarItem({ item }: SideBarItemProps) {
     const context =  useContext(SideBarContext);
     const { isOpen, expandMenu } = context ?? {};
-
-
-
-
+    
     return (
         <ul
             className={`menu bg-base-200 w-full p-0 [&_li>*]:rounded-none ${

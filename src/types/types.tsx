@@ -7,6 +7,7 @@ export interface UserProps {
     token?: string | null;
 }
 
+
 export interface AuthProps {
     name: string;
     email?: string;
