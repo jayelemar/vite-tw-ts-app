@@ -4,11 +4,11 @@ import registerImg from "../../assets/register.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { registerUser, validateEmail } from "../../services/authService";
-import { SET_NAME } from "../../store/redux/feature/authSlice";
+import { SET_LOGIN, SET_NAME} from "../../store/redux/feature/authSlice";
 import { useDispatch } from "react-redux";
-import { UserProps } from "../../types/types";
+import { RegisterProps } from "../../types/types";
 
-const initialState: UserProps = {
+const initialState: RegisterProps = {
     name: "",
     email: "",
     password: "",
@@ -54,9 +54,11 @@ function Register() {
             const data = await registerUser(userData);
             console.log(data);
             await dispatch(SET_NAME(data.name));
+            await dispatch(SET_LOGIN((true)));
             toast.success("Account Registration Successful")
             navigate("/dashboard");
             setIsLoading(false);
+
         } catch (error) {
             setIsLoading(false);
             console.log((error as Error).message);

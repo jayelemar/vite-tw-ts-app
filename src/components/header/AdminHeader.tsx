@@ -1,7 +1,7 @@
 import React from "react";
 import { logoutUser } from "../../services/authService";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_NAME, selectName } from "../../store/redux/feature/authSlice";
+import { SET_LOGIN, SET_NAME, selectName } from "../../store/redux/feature/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 useSelector
@@ -14,6 +14,7 @@ function AdminHeader() {
     const handleLogoutClick = async () => {
         await logoutUser();
         await dispatch(SET_NAME(""));
+        await dispatch(SET_LOGIN(false));
         navigate("/login");
         toast.success("You have successfully log-out.")
     };

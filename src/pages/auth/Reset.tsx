@@ -4,9 +4,9 @@ import loginImg from "../../assets/login.svg";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { resetPassword } from "../../services/authService";
-import { ResetTokenProps, UserProps } from "../../types/types";
+import { ResetTokenProps, ResetProps } from "../../types/types";
 
-const initialState: UserProps = {
+const initialState: ResetProps = {
     password: "",
     confirmPassword: ""
 };

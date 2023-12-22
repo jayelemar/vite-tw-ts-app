@@ -13,6 +13,8 @@ function App() {
     const location = useLocation();
     const isAdminRoute = location.pathname.startsWith("/dashboard");
 
+
+
     return (
         <>
             {isAdminRoute ? null : <Header />}

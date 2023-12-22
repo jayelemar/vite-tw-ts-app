@@ -29,6 +29,7 @@ function Navbar() {
                         aria-label="close sidebar"
                         className="drawer-overlay"
                     ></label>
+                    
                     <NavList />
                 </div>
             </div>

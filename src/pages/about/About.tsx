@@ -35,6 +35,7 @@ const About = () => {
                             href="https://web.facebook.com/bulakenya.giftshop"
                             target="_blank"
                             rel="noreferrer noopener"
+                            title="Facebook Page Link"
                         >
                             <AiFillFacebook
                                 size={52}
@@ -46,6 +47,7 @@ const About = () => {
                             target="_blank"
                             rel="noreferrer noopener"
                             className="hover:cursor-default"
+                            title="Facebook Link"
                         >
                             <SiShopee
                                 size={47}
@@ -56,7 +58,7 @@ const About = () => {
                             href="https://www.lazada.com.ph/shop/bulakenya-gift-shop"
                             target="_blank"
                             rel="noreferrer noopener"
-                            style={{ width: "45px", height: "45px" }}
+                            className="w-[45px] h-[45px]"
                         >
                             <img
                                 src={lazadaLogo}
