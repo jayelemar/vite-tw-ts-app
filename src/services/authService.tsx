@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { ForgotPasswordProps, UserProps } from "../types/types";
 
@@ -14,54 +14,56 @@ export const validateEmail = (email: string) => {
 export const registerUser = async (userData: UserProps) => {
     try {
         const response = await axios.post(
-            `${BACKEND_URL}/api/users/register`,
-            userData
+            `${BACKEND_URL}/api/users/register`,userData, { withCredentials: true }
         );
         if (response.statusText === "OK") {
-            toast.success("User Registered Succesfully");
+            toast.success("User Registered successfully");
         }
         return response.data;
     } catch (error) {
-        console.error("Error in registerUser:", error);
-
         if (axios.isAxiosError(error)) {
             const message =
                 (error.response &&
                     error.response.data &&
                     error.response.data.message) ||
                 error.message ||
-                error.toString();
+                "An unexpected error occurred during login.";
+            console.error("Server response:", message);
             toast.error(message);
-        } else {
+        } else {    
             toast.error("An unexpected error occurred");
         }
     }
 };
 
-export const loginUser = async (userData: UserProps) => {
+export const loginUser = async (userData: UserProps): Promise<UserProps | null> => {
     try {
-        const response: AxiosResponse = await axios.post(
+        const response = await axios.post(
             `${BACKEND_URL}/api/users/login`,
             userData
         );
 
-        if (response.statusText === "OK") {
-            toast.success("Login Successful...");
+        console.log('Server Response:', response);
+
+        if (response.status !== 200) {
+            const errorText = await response.data.text();
+            console.error('Login failed. Server response:', errorText);
+            throw new Error(`Login failed with status ${response.status}`);
         }
-        console.log("Login Response:", response.data);
-        return response.data;
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            const message =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
-            toast.error(message);
+
+        // Check if the response data is JSON
+        const contentType = response.headers['content-type'];
+        if (contentType && contentType.includes('application/json')) {
+            const data: UserProps = response.data;
+            console.log('Data received from server:', data);
+            return data;
         } else {
-            toast.error("An unexpected error occurred");
+            console.error('Response data is not JSON:', response.data);
+            throw new Error('Invalid response data format');
         }
+    } catch (error) {
+        console.error('Error during login:', error);
+        return null;
     }
 };
 
@@ -111,23 +113,32 @@ export const forgotPassword = async (userData: ForgotPasswordProps) => {
     }
 };
 
-export const resetPassword = async (userData: UserProps, resetToken: string)  => {
+export const resetPassword = async (userData: UserProps, resetToken: string) => {
     try {
-        const response =  await axios.put(`${BACKEND_URL}/api/users/resetpassword/${resetToken}`, userData);
-        return response.data
+        const response = await axios.put(
+            `${BACKEND_URL}/api/users/resetpassword/${resetToken}`,
+            userData
+        );
+        
+        // Check the response from the server
+        console.log('Reset Password Response:', response.data);
+
+        return response.data; // Assuming the response contains success and message properties
     } catch (error) {
-        console.error("Reset Password Error:", error);
+        console.error('Reset Password Error:', error);
+
         if (axios.isAxiosError(error)) {
             const message =
                 (error.response &&
                     error.response.data &&
                     error.response.data.message) ||
                 error.message ||
-                "An unexpected error occurred during login.";
-                console.error("Server response:", message);
-            toast.error(message);
+                "An unexpected error occurred during password reset.";
+            console.error("Server response:", message);
+            throw new Error(message);
         } else {
-            toast.error("An unexpected error occurred");
+            console.error("An unexpected error occurred");
+            throw new Error("An unexpected error occurred during password reset.");
         }
     }
 };

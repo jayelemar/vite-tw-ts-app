@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { loginUser, validateEmail } from "../../services/authService";
 import { useDispatch } from "react-redux";
-import { SET_NAME } from "../../store/redux/feature/authSlice";
+import { SET_NAME, SET_LOGIN } from "../../store/redux/feature/authSlice";
 import { toast } from "react-toastify";
 import { UserProps } from "../../types/types";
 
@@ -45,6 +45,8 @@ function Login() {
             if (data) {
                 if (data.name) {
                     await dispatch(SET_NAME(data.name));
+                    await dispatch(SET_LOGIN(true))
+
                     navigate("/dashboard");
                 } else {
                     console.error("Invalid data received. Name is missing:", data);
