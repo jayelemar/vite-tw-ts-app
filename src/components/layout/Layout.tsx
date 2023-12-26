@@ -3,17 +3,17 @@ import AdminHeader from "../header/AdminHeader";
 import Footer from "../footer/Footer";
 
 export interface LayoutProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 function Layout({ children }: LayoutProps) {
-    return (
-        <>
-            <AdminHeader />
-            <div className="h-screen-90">{children}</div>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <AdminHeader />
+      <div className="h-screen-90">{children}</div>
+      <Footer />
+    </>
+  );
 }
 
 export default Layout;

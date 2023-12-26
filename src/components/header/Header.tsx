@@ -4,27 +4,25 @@ import { Navbar, NavList } from "../index";
 import { Link } from "react-router-dom";
 
 function Header() {
-    return (
-        <header>
-            <div className="navbar bg-base-100 p-0 justify-between fixed top-0 w-full max-w-7xl z-10">
-                <Link
-                    to="/"
-                    className="navbar-start btn btn-ghost text-xl p-0 w-64 sm:w-96 flex justify-start items-center mb-2 mx-5 "
-                >
-                    <img src={logo} alt="logo" width={50} />
-                    <h5 className="text-lg md:text-2xl pt-2">
-                        Bulakenya Gift Shop
-                    </h5>
-                </Link>
-                <nav className="hidden md:flex">
-                    <NavList />
-                </nav>
-                <nav className="flex md:hidden">
-                    <Navbar />
-                </nav>
-            </div>
-        </header>
-    );
+  return (
+    <header>
+      <div className="navbar fixed top-0 z-10 w-full max-w-7xl justify-between bg-base-100 p-0">
+        <Link
+          to="/"
+          className="btn btn-ghost navbar-start mx-5 mb-2 flex w-64 items-center justify-start p-0 text-xl sm:w-96 "
+        >
+          <img src={logo} alt="logo" width={50} />
+          <h5 className="pt-2 text-lg md:text-2xl">Bulakenya Gift Shop</h5>
+        </Link>
+        <nav className="hidden md:flex">
+          <NavList />
+        </nav>
+        <nav className="flex md:hidden">
+          <Navbar />
+        </nav>
+      </div>
+    </header>
+  );
 }
 
 export default Header;

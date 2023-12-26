@@ -3,75 +3,70 @@ import loginImg from "../../assets/login.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword, validateEmail } from "../../services/authService";
 import { toast } from "react-toastify";
-import { ForgotPasswordProps } from "../../types/types";
 
+interface ForgotPasswordProps {
+  email: string;
+}
 
 function Forgot() {
-    const [email, setEmail] = useState("");
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value);
-    };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
 
-    const forgot = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const forgot = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        if (!email) {
-            return toast.error("Please enter an email");
-        }
+    if (!email) {
+      return toast.error("Please enter an email");
+    }
 
-        if (!validateEmail(email)) {
-            return toast.error("Please enter a valid email");
-        }
-        const userData: ForgotPasswordProps = { email };
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    }
+    const userData: ForgotPasswordProps = { email };
 
-        await forgotPassword(userData);
-        setEmail("")
-        navigate("/")
+    await forgotPassword(userData);
+    setEmail("");
+    navigate("/");
+  };
 
-    };
-
-    return (
-        <>
-            <section className="slide-up flex justify-center items-center bg-slate-50 px-5 h-screen-90">
-                <div className="duration-500 ease-linear mx-10 hidden md:flex">
-                    <img src={loginImg} alt="login-img" width={400} />
-                </div>
-                <div className="w-full md:w-96 lg:w-[30rem] p-6 duration-500 ease-linear px-5 shadow-xl">
-                    <h3>Forgot Password</h3>
-                    <form
-                    onSubmit={forgot}
-                    >
-                        <input
-                            type="text"
-                            placeholder="Email"
-                            className="input input-bordered w-full input-base placeholder:font-poppins placeholder:text-lg mb-2"
-                            value={email}
-                            onChange={handleInputChange}
-                        />
-                        <button className="btn bg-slate-300 btn-block font-poppins text-lg font-light">
-                            Get Reset Email
-                        </button>
-                    </form>
-                    <div className="flex justify-between items-center mt-3">
-                        <Link to="/">
-                            {" "}
-                            <span className="link link-primary link-hover">
-                                Home
-                            </span>
-                        </Link>
-                        <Link to="/login">
-                            {" "}
-                            <span className="link link-primary link-hover">
-                                Login
-                            </span>
-                        </Link>
-                    </div>
-                </div>
-            </section>
-        </>
-    );
+  return (
+    <>
+      <section className="slide-up h-screen-90 flex items-center justify-center bg-slate-50 px-5">
+        <div className="mx-10 hidden duration-500 ease-linear md:flex">
+          <img src={loginImg} alt="login-img" width={400} />
+        </div>
+        <div className="w-full p-6 px-5 shadow-xl duration-500 ease-linear md:w-96 lg:w-[30rem]">
+          <h3>Forgot Password</h3>
+          <form onSubmit={forgot}>
+            <input
+              type="text"
+              placeholder="Email"
+              className="input-base input input-bordered mb-2 w-full placeholder:font-poppins placeholder:text-lg"
+              value={email}
+              onChange={handleInputChange}
+            />
+            <button className="btn btn-block bg-slate-300 font-poppins text-lg font-light">
+              Get Reset Email
+            </button>
+          </form>
+          <div className="mt-3 flex items-center justify-between">
+            <Link to="/">
+              {" "}
+              <span className="link-hover link-primary link">Home</span>
+            </Link>
+            <Link to="/login">
+              {" "}
+              <span className="link-hover link-primary link">Login</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
 
 export default Forgot;

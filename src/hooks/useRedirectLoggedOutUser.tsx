@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getLoginStatus } from "../services/authService";
 import { toast } from "react-toastify";
-import { SET_LOGIN } from "../store/redux/feature/authSlice";
+import { SET_LOGIN } from "../store/redux/feature/auth/authSlice";
 
 const useRedirectLoggedOutUser = (path: string) => {
   const navigate = useNavigate();

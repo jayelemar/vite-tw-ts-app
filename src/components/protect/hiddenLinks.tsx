@@ -1,6 +1,5 @@
-
 import { useLoginStatus } from "../../hooks/useLoginStatus";
-import { LoginProps, LogoutProps } from '../../types/types';
+import { LoginProps, LogoutProps } from "../../types/types";
 import React from "react";
 
 export const ShowOnLogin = ({ children }: LoginProps) => {
