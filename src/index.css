@@ -4,64 +4,62 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
-
 #root {
-    @apply m-0 p-0 box-border w-full;
+  @apply m-0 box-border w-full p-0;
 }
 html {
-    @apply text-base scroll-smooth;
+  @apply scroll-smooth text-base;
 }
 body {
-    @apply w-full bg-slate-100;
+  @apply w-full bg-slate-100;
 }
 header,
 footer,
 section {
-    @apply m-auto max-w-7xl bg-red-400;
+  @apply m-auto max-w-7xl bg-red-400;
 }
 h1,
 h2,
 h3,
 h4 {
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 h1 {
-    @apply text-6xl;
+  @apply text-6xl;
 }
 h2 {
-    @apply text-5xl;
+  @apply text-5xl;
 }
 h3 {
-    @apply text-4xl;
+  @apply text-4xl;
 }
 h4 {
-    @apply text-3xl;
+  @apply text-3xl;
 }
 p {
-    @apply text-base font-light leading-5;
+  @apply text-base font-light leading-5;
 }
 
 /* ANIMATIONS */
 @keyframes slide-in {
-    0% {
-        transform: translateY(-5rem);
-    }
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(-5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 @keyframes slide-out {
-    0% {
-        transform: translateY(5rem);
-    }
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .h-screen-90 {
-    height: 92vh; 
-  }
+  height: 92vh;
+}
